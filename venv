@@ -1,0 +1,12 @@
+import requests
+import random
+
+URL = "http://localhost:5000/api/polls/demo/vote"
+
+options = [0, 1, 2, 3]  # indices of poll options
+
+for i in range(10):  # simulate 10 users
+    session = requests.Session()
+    choice = random.choice(options)
+    response = session.post(URL, json={"option": choice})
+    print(f"[User {i+1}] voted for option {choice} -> {response.json()}")
